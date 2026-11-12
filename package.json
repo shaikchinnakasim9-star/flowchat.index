@@ -1,0 +1,55 @@
+{
+  "name": "chatflow-ai",
+  "version": "1.0.0",
+  "description": "A local-first text-to-flowchart and interactive workflow generator.",
+  "author": "ChatFlow",
+  "type": "module",
+  "main": "desktop/main.js",
+  "exports": {
+    ".": "./lib/workflow-parser.js"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "desktop": "electron .",
+    "desktop:build": "node desktop/build.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "electron": "^45.2.1",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "ai.chatflow.desktop",
+    "productName": "ChatFlow",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "desktop/**/*",
+      "lib/**/*",
+      "index.html",
+      "server.js",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "allowScripts": {
+    "electron-winstaller@5.4.0": true,
+    "electron@45.2.1": true
+  }
+}
